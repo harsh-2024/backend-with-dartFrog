@@ -5,8 +5,10 @@ Response onRequest(RequestContext context) {
   final method = request.method.name;
   final methodValue = request.method.value;
   final params = request.uri.queryParameters;
-  final name = params['name'] ?? 'there';
-  return Response(
-      body:
-          'Welcome to the Dart Frog server!\n ${methodValue}\n ${method} \n ${name}');
+  final name = params['name'] ?? 'no_name_defined';
+  return Response.json(body: <String, dynamic>{
+    'RequestName': method,
+    'YourName': name,
+    'MethodValue': methodValue
+  });
 }
